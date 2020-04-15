@@ -1,0 +1,251 @@
+#include <iostream>
+
+
+using namespace std;
+
+
+//Declaração de variaveis
+char opcMain;
+int valoresInteiro[13];
+time_t time;
+char valoresChar[13] = {'n','a','e','u','i','q','r','h','w','g','m','x','c'};
+string valoresNomes[13] = {"arthur","gabriela","joao","patricia","julia","sergio","bruno","ana","victor","ulisses","welinghton","jubileu","cansei"};
+//------------------------
+
+//Declaração de metodos
+void menu();
+void ordenaInteiro();
+void menuOrdenacao();
+void ordenaChar();
+void ordenaString();
+
+//---------------------
+
+
+
+int main() {
+    do{
+
+        menu();
+        cout << "Desaja mesmo sair? <S> ou <N>";
+        cin >> opcMain;
+        opcMain = toupper(opcMain);
+
+    }while (opcMain != 'S');
+
+    cout << "Obrigado \n Programa finalizado";
+
+   return 0;
+}
+
+void menuOrdenacao(){
+    cout << "\n----MENU--- \n"
+            "1. Mostra vetor\n"
+            "2. Ordena de forma Ascendente.\n"
+            "3. Ordena de forma descendente.\n"
+            "4.  Voltar.\n\n"
+            "Escolha uma opcao: ";
+}
+
+//Menu Aplicao
+void menu(){
+    inicioMenu:
+    //cria tag para navegar pelo copdigo
+    cout << "\n-------Menu-------\n\n"
+            "1. Ordenacao de vetores com valores Inteiros\n"
+            "2. Ordenacao de vetores com valores Char\n"
+            "3. Ordenacao de vetores com valores String\n"
+            "4. Sair";
+
+    cout << "Escolha uma opcao acima: ";
+    int opcMenu = 0;
+    cin >> opcMenu;
+
+    switch (opcMenu){
+        case 1: ordenaInteiro();
+            break;
+        case 2: ordenaChar();
+            break;
+        case 3: ordenaString();
+            break;
+        case 4:
+            break;
+        default:
+            cout << "Opcao invalida!";
+            goto inicioMenu;
+        }
+}
+
+
+void ordenaInteiro(){
+
+    int vetAxu[13];
+
+    //gera array de forma random
+    for(int i = 0; i < 13; i++){
+        //gera valores randomicos entre 0 e 49 e adiciona na posicao do vetor
+        valoresInteiro[i] = rand() % 50;
+        vetAxu[i] = valoresInteiro[i];
+    }
+
+    //ordena de forma decrescente
+    for(int i = 0; i < 13; i++){
+        for (int j = 0; j < 13; ++j) {
+            //a posicao da reorganizacao do vetor e usada a do for interno
+            if(valoresInteiro[i] > valoresInteiro[j]){
+                int aux;
+
+                aux = valoresInteiro[i];
+                valoresInteiro[i] = valoresInteiro[j];
+                valoresInteiro[j] = aux;
+            }
+        }
+    }
+
+    //cria tag para navegar pelo copdigo
+    menu:
+    //puxa funcao menu de ordenacao
+    menuOrdenacao();
+    int opcMenu;
+    cin >> opcMenu;
+
+    switch (opcMenu){
+        case 1:{
+            //mostra vetor original
+            for(int j =0; j < 13; j++){
+                cout << vetAxu[j] << " , ";
+            }
+            goto menu;
+        }
+        case 2:{
+            //mostra vetor de forma crescente
+            for(int i = 13; i >= 0; i--){
+                cout << valoresInteiro[i] << " , ";
+            }
+            goto menu;
+        }
+        case 3:{
+            //mostrar vetor de forma decrescente
+            for(int i = 0; i < 13; i++){
+                cout << valoresInteiro[i] << " , ";
+            }
+            goto menu;
+        }
+        case 4:
+            menu();
+            break;
+        default:
+            cout << "Opcao invalida.";
+            goto menu;
+
+    }
+}
+
+//ordena char com relacao a tabela ascii
+void ordenaChar(){
+
+    for(int i = 0; i < 13; i++){
+        cout << valoresChar[i] << " , ";
+    }
+
+    //ordena de forma decrescente
+    for(int i = 0; i < 13; i++){
+        for (int j = 0; j < 13; ++j) {
+            //a posicao da reorganizacao do vetor
+            if(valoresChar[i] > valoresChar[j]){
+                char aux;
+
+                aux = valoresChar[i];
+                valoresChar[i] = valoresChar[j];
+                valoresChar[j] = aux;
+            }
+        }
+    }
+
+    menuChar:
+    menuOrdenacao();
+    int opcMenu = 0;
+    cin >> opcMenu;
+
+    switch (opcMenu) {
+        case 1: {
+                for (int i = 0; i < 13; i++) {
+                    cout << valoresChar[i] << " , ";
+                }
+                goto menuChar;
+                }
+            case 2:{
+                for(int i = 13; i >= 0; i--){
+                    cout << valoresChar[i] << " , ";
+                }
+                goto menuChar;}
+        case 3:{
+            //mostrar vetor de forma decrescente
+            for(int i = 0; i < 13; i++){
+                cout << valoresChar[i] << " , ";
+            }
+            goto menuChar;}
+        case 4:
+            menu();
+            break;
+        default:
+            cout << "Opcao invalida.";
+            goto menuChar;
+
+    }
+
+
+}
+
+void ordenaString(){
+
+    for(int i = 0; i < 13; i++){
+        cout << valoresNomes[i] << " , ";
+    }
+
+    //ordena de forma decrescente
+    for(int i = 0; i < 13; i++){
+        for (int j = 0; j < 13; ++j) {
+            //a posicao da reorganizacao do vetor
+            if(valoresNomes[i] > valoresNomes[j]){
+                string aux;
+
+                aux = valoresNomes[i];
+                valoresNomes[i] = valoresNomes[j];
+                valoresNomes[j] = aux;
+            }
+        }
+    }
+
+    menuString:
+    menuOrdenacao();
+    int opcMenu = 0;
+    cin >> opcMenu;
+
+    switch (opcMenu) {
+        case 1: {
+            for (int i = 0; i < 13; i++) {
+                cout << valoresNomes[i] << " , ";
+            }
+            goto menuString;
+        }
+        case 2:{
+            for(int i = 13; i >= 0; i--){
+                cout << valoresNomes[i] << " , ";
+            }
+            goto menuString;}
+        case 3:{
+            //mostrar vetor de forma decrescente
+            for(int i = 0; i < 13; i++){
+                cout << valoresNomes[i] << " , ";
+            }
+            goto menuString;}
+        case 4:
+            menu();
+            break;
+        default:
+            cout << "Opcao invalida.";
+            goto menuString;
+
+    }
+}
